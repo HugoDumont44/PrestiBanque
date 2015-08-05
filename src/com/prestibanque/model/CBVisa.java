@@ -1,7 +1,7 @@
 package com.prestibanque.model;
 
 /**
- * @author ETY
+ * @author Spoilt
  */
 public class CBVisa extends CarteBancaire {
     public CBVisa(String numero, String dateValidite, int cryptogramme) {
