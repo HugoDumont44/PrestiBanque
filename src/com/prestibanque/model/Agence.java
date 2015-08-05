@@ -6,18 +6,20 @@ public class Agence extends Banque {
 	private int identification;
 	private String nomAgence;
 	private String dateCreation;
+	private Gerant manager;
 	
 	
 	/*CONSTRUCTEUR*/
-	public Agence(int identification, String nomAgence, String dateCreation) {
+	public Agence(int identification, String nomAgence, String dateCreation, Gerant man) {
 		this.identification = identification;
 		this.nomAgence = nomAgence;
 		this.dateCreation = dateCreation;
+		this.manager = man;
 	}
 	public Agence(int identification, String nomAgence) {
 		this.identification = identification;
 		this.nomAgence = nomAgence;
-		this.dateCreation = "l'an de grâce 500 av JC";
+		dateCreation = "l'an de grâce 500 av JC";
 	}
 	
 	
