@@ -16,10 +16,8 @@ public class Agence extends Banque {
 		this.dateCreation = dateCreation;
 		this.manager = man;
 	}
-	public Agence(int identification, String nomAgence) {
-		this.identification = identification;
-		this.nomAgence = nomAgence;
-		dateCreation = "l'an de grâce 500 av JC";
+	public Agence(int identification, String nomAgence, Gerant man) {
+		this(identification, nomAgence, "l'an de grâce 500 av JC", man);
 	}
 	
 	
@@ -41,6 +39,12 @@ public class Agence extends Banque {
 	}
 	public void setDateCreation(String dateCreation) {
 		this.dateCreation = dateCreation;
+	}
+	public Gerant getManager() {
+		return manager;
+	}
+	public void setManager(Gerant manager) {
+		this.manager = manager;
 	}
 	
 	
