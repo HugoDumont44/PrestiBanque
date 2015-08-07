@@ -1,5 +1,6 @@
 package com.prestibanque.test;
 
+import com.prestibanque.model.Client;
 import com.prestibanque.model.Conseiller;
 import com.prestibanque.model.Gerant;
 
@@ -13,7 +14,7 @@ public class TestAgence {
         // TODO 1) Déclaration des variables
         Gerant man1, man2;
         Conseiller con1, con2, con3;
-        List<Conseiller> listing = new ArrayList<>();
+        List<Conseiller> listeConseillers = new ArrayList<>();
         List<Gerant> listeGerants = new ArrayList<>();
         boolean quitter = false;
 
@@ -30,11 +31,11 @@ public class TestAgence {
         con3.setManager(man2);
         listeGerants.add(man1);
         listeGerants.add(man2);
-        listing.add(con1);
-        listing.add(con2);
-        listing.add(con3);
-        affiche(man1, listing);
-        affiche(man2, listing);
+        listeConseillers.add(con1);
+        listeConseillers.add(con2);
+        listeConseillers.add(con3);
+        affiche(man1, listeConseillers);
+        affiche(man2, listeConseillers);
 
 
         while (!quitter) {
@@ -43,7 +44,7 @@ public class TestAgence {
                     menuGerants(listeGerants);
                     break;
                 case 2:
-                    //Lister Conseillers
+                    menuConseillers(listeConseillers);
                     break;
                 case 3:
                     //Lister Clients
@@ -54,6 +55,52 @@ public class TestAgence {
             }
         }
     }
+
+    private static void menuConseillers(List<Conseiller> listeConseillers) {
+        int i;
+        Scanner scanner = new Scanner(System.in);
+        int input;
+        boolean quitter = false;
+
+        while (!quitter) {
+            System.out.println("\n\nChoisissez votre compte :");
+            for (i = 0; i < listeConseillers.size(); i++) {
+                Conseiller conseiller = listeConseillers.get(i);
+                System.out.println((listeConseillers.indexOf(conseiller) + 1) + ". " + conseiller);
+            }
+            System.out.println("0. Quitter");
+
+            switch (input = scanner.nextInt()) {
+                case 0:
+                    quitter = true;
+                    break;
+                default:
+                    if (input <= listeConseillers.size() && input > 0) {
+                        menuConseiller(listeConseillers.get(input - 1));
+                    }
+            }
+        }
+    }
+
+    private static void menuConseiller(Conseiller conseiller) {
+        Scanner scanner = new Scanner(System.in);
+        boolean quitter = false;
+
+        System.out.println("Bienvenue " + conseiller + ",");
+        System.out.println("Choisissez une action :");
+        System.out.println("0. Quitter");
+
+        while (!quitter) {
+            switch (scanner.nextInt()) {
+                case 1:
+                    break;
+                case 0:
+                    quitter = true;
+                    break;
+            }
+        }
+    }
+
 
     private static void menuGerants(List<Gerant> listeGerants) {
         int i;

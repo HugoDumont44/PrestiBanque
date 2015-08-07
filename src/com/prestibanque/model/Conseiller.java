@@ -8,14 +8,13 @@ public class Conseiller extends Utilisateur {
 	/*ATTRIBUTS*/
 	Gerant manager;
 	Agence agence;
-	List<Client> listClient = new ArrayList<Client>();
+	List<Client> listClient = new ArrayList<>();
 	
 	
 	/*CONSTRUCTEUR*/
 	public Conseiller(String nom, String prenom){
 		super(nom, prenom);
 	}
-
 
 	/*METHODES D'ACCES AUX ATTRIBUTS*/
 	public Gerant getManager() {
@@ -42,5 +41,9 @@ public class Conseiller extends Utilisateur {
 	public int nombreClient(){
 		return listClient.size();
 	}
-	
+
+    @Override
+    public String toString() {
+        return this.getPrenom() + " " + this.getNom();
+    }
 }
