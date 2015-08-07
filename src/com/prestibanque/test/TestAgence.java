@@ -1,5 +1,6 @@
 package com.prestibanque.test;
 
+import com.prestibanque.model.Agence;
 import com.prestibanque.model.Client;
 import com.prestibanque.model.Conseiller;
 import com.prestibanque.model.Gerant;
@@ -12,6 +13,7 @@ public class TestAgence {
 
     public static void main(String[] args) {
         // TODO 1) Déclaration des variables
+        Agence maBanque;
         Gerant man1, man2;
         Conseiller con1, con2, con3;
         List<Conseiller> listeConseillers = new ArrayList<>();
@@ -24,19 +26,17 @@ public class TestAgence {
         con1 = new Conseiller("Le dinosaure", "Jean Marie");
         con2 = new Conseiller("Le poulpe", "Paul");
         con3 = new Conseiller("El apero", "Jojo");
+        maBanque = new Agence(156, "PrestiBank", man1);
 
         // TODO 3) Utilisation
-        con1.setManager(man1);
-        con2.setManager(man1);
-        con3.setManager(man2);
+        maBanque.ajoutConseiller(con1);
+        maBanque.ajoutConseiller(con2);
+        maBanque.ajoutConseiller(con3);
         listeGerants.add(man1);
         listeGerants.add(man2);
         listeConseillers.add(con1);
         listeConseillers.add(con2);
         listeConseillers.add(con3);
-        affiche(man1, listeConseillers);
-        affiche(man2, listeConseillers);
-
 
         while (!quitter) {
             switch (MenuPrincipal()) {
@@ -44,7 +44,7 @@ public class TestAgence {
                     menuGerants(listeGerants);
                     break;
                 case 2:
-                    menuConseillers(listeConseillers);
+                    menuConseillers(maBanque);
                     break;
                 case 3:
                     //Lister Clients
@@ -56,7 +56,7 @@ public class TestAgence {
         }
     }
 
-    private static void menuConseillers(List<Conseiller> listeConseillers) {
+    private static void menuConseillers(Agence maBanque) {
         int i;
         Scanner scanner = new Scanner(System.in);
         int input;
@@ -64,9 +64,9 @@ public class TestAgence {
 
         while (!quitter) {
             System.out.println("\n\nChoisissez votre compte :");
-            for (i = 0; i < listeConseillers.size(); i++) {
-                Conseiller conseiller = listeConseillers.get(i);
-                System.out.println((listeConseillers.indexOf(conseiller) + 1) + ". " + conseiller);
+            for (i = 0; i < maBanque.getListConseiller().size(); i++) {
+                Conseiller conseiller = maBanque.getListConseiller().get(i);
+                System.out.println((maBanque.getListConseiller().indexOf(conseiller) + 1) + ". " + conseiller);
             }
             System.out.println("0. Quitter");
 
@@ -75,30 +75,45 @@ public class TestAgence {
                     quitter = true;
                     break;
                 default:
-                    if (input <= listeConseillers.size() && input > 0) {
-                        menuConseiller(listeConseillers.get(input - 1));
+                    if (input <= maBanque.getListConseiller().size() && input > 0) {
+                        menuConseiller(maBanque, maBanque.getListConseiller().get(input - 1));
                     }
             }
         }
     }
 
-    private static void menuConseiller(Conseiller conseiller) {
+    private static void menuConseiller(Agence maBanque, Conseiller conseiller) {
         Scanner scanner = new Scanner(System.in);
         boolean quitter = false;
 
-        System.out.println("Bienvenue " + conseiller + ",");
-        System.out.println("Choisissez une action :");
-        System.out.println("0. Quitter");
-
         while (!quitter) {
+            System.out.println("\n\nBienvenue " + conseiller + ",");
+            System.out.println("Vos clients : " + conseiller.listeClient());
+            System.out.println("Choisissez une action :");
+            System.out.println("1. Ajouter un client");
+            System.out.println("0. Quitter");
+
             switch (scanner.nextInt()) {
                 case 1:
+                    ajouterClient(maBanque, conseiller);
                     break;
                 case 0:
                     quitter = true;
                     break;
             }
         }
+    }
+
+    private static void ajouterClient(Agence maBanque, Conseiller conseiller) {
+        String nom;
+        String prenom;
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Nom : ");
+        nom = scanner.next();
+        System.out.print("Prénom : ");
+        prenom = scanner.next();
+        conseiller.ajoutClient(new Client(nom, prenom), maBanque.getListConseiller());
     }
 
 
@@ -149,7 +164,6 @@ public class TestAgence {
         }
     }
 
-
     private static int MenuPrincipal() {
         System.out.println("\n\nBienvenue dans le logiciel de gestion de banque");
         System.out.println("Choisissez un rôle : ");
@@ -159,15 +173,5 @@ public class TestAgence {
         System.out.println("0. Quitter");
         return new Scanner(System.in).nextInt();
     }
-
-    public static void affiche(Gerant manager, List<Conseiller> liste) {
-        System.out.println("Le manager " + manager.getPrenom() + " " + manager.getNom() + " supervise les conseillers suivants :");
-        for (Conseiller conseiller : liste) {
-            if (conseiller.getManager().equals(manager)) {
-                System.out.println(conseiller.getPrenom() + " " + conseiller.getNom());
-            }
-        }
-    }
-
 
 }

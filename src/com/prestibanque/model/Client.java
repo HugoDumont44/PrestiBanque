@@ -10,6 +10,7 @@ public class Client extends Utilisateur {
     private String ville;
     private String codePostal;
     private String telephone;
+    private Conseiller conseil;
 
     
     /*CONSTRUCTEUR*/
@@ -60,4 +61,8 @@ public class Client extends Utilisateur {
         return this;
     }
     
+    @Override
+    public String toString() {
+        return getPrenom() + " " + getNom();
+    }
 }

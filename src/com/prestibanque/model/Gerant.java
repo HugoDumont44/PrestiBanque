@@ -7,4 +7,8 @@ public class Gerant extends Utilisateur {
 		super(nom, prenom);
 	}
 
+    @Override
+    public String toString() {
+        return getPrenom() + " " + getNom();
+    }
 }
