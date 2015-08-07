@@ -1,8 +1,5 @@
 package com.prestibanque.test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.prestibanque.model.*;
 
 public class TestConseiller {
@@ -14,7 +11,6 @@ public class TestConseiller {
 		Gerant man;
 		Conseiller con1, con2, con3;
 		Client cli1, cli2, cli3, cli4, cli5, cli6, cli7, cli8, cli9, cli10, cli11;
-		List<Client> listing;
 
         // TODO 2) Instanciation
 		man = new Gerant("Dupont", "Jean Paul");

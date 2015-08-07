@@ -10,7 +10,6 @@ public class Client extends Utilisateur {
     private String ville;
     private String codePostal;
     private String telephone;
-    private Conseiller conseil;
 
     
     /*CONSTRUCTEUR*/

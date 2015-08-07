@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.prestibanque.service.MethodeGestion;
+
 public class Conseiller extends Utilisateur {
 
 	/*ATTRIBUTS*/
@@ -27,18 +29,8 @@ public class Conseiller extends Utilisateur {
 
 	/*COMPORTEMENTS DE LA CLASSE*/
 	public void ajoutClient(Client client, List<Conseiller> listConseil){
-		if (listClient.size() < 10){
-			listClient.add(client);
-		}
-		else {
-			for (Iterator<Conseiller> iterator = listConseil.iterator();iterator.hasNext();){
-				Conseiller conseil = iterator.next();
-				if (conseil.listeClient().size() < 10){
-					conseil.ajoutClient(client, listConseil);
-					break;
-				}
-			}
-		}	
+		MethodeGestion gestion = new MethodeGestion();
+		gestion.ajoutClient(client, listConseil, listClient);
 	}
 	public List<Client> listeClient(){
 		return listClient;
