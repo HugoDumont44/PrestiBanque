@@ -10,7 +10,6 @@ public class Client extends Utilisateur {
     private String ville;
     private String codePostal;
     private String telephone;
-    private Conseiller conseil;
 
     
     /*CONSTRUCTEUR*/
@@ -60,13 +59,5 @@ public class Client extends Utilisateur {
         this.telephone = telephone;
         return this;
     }
-	public Conseiller getConseil() {
-		return conseil;
-	}
-	public void setConseil(Conseiller conseil) {
-		this.conseil = conseil;
-		conseil.ajoutClient(this);
-	}
-    
     
 }

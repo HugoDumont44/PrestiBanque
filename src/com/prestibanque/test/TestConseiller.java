@@ -13,7 +13,7 @@ public class TestConseiller {
 		Agence maBanque;
 		Gerant man;
 		Conseiller con1, con2, con3;
-		Client cli1, cli2, cli3;
+		Client cli1, cli2, cli3, cli4, cli5, cli6, cli7, cli8, cli9, cli10, cli11;
 		List<Client> listing;
 
         // TODO 2) Instanciation
@@ -25,30 +25,52 @@ public class TestConseiller {
 		cli1 = new Client("numero1", "client");
 		cli2 = new Client("numero2", "client");
 		cli3 = new Client("numero3", "client");
-		listing = new ArrayList<Client>();
+		cli4 = new Client("numero4", "client");
+		cli5 = new Client("numero5", "client");
+		cli6 = new Client("numero6", "client");
+		cli7 = new Client("numero7", "client");
+		cli8 = new Client("numero8", "client");
+		cli9 = new Client("numero9", "client");
+		cli10 = new Client("numero10", "client");
+		cli11 = new Client("numero11", "client");
+		
 
         // TODO 3) Utilisation
-		maBanque.ajoutConseiller(con1);
-		maBanque.ajoutConseiller(con2);
-		maBanque.ajoutConseiller(con3);
-		afficheAgence(maBanque);
+			//Affichage de la banque et des conseillers
+			maBanque.ajoutConseiller(con1);
+			maBanque.ajoutConseiller(con2);
+			maBanque.ajoutConseiller(con3);
+			afficheAgence(maBanque);
 		
-		con1.setManager(man);
-		/*con2.setManager(man);
-		con3.setManager(man);*/
-		cli1.setConseil(con1);
-		cli2.setConseil(con1);
-		cli3.setConseil(con1);
-		listing = con1.listeClient();
-		
-		affiche(con1, listing);
+			//Affichage des clients par conseillers
+			con1.ajoutClient(cli1, maBanque.getListConseiller());
+			con1.ajoutClient(cli2, maBanque.getListConseiller());
+			con1.ajoutClient(cli3, maBanque.getListConseiller());
+			con1.ajoutClient(cli4, maBanque.getListConseiller());
+			con1.ajoutClient(cli5, maBanque.getListConseiller());
+			con1.ajoutClient(cli6, maBanque.getListConseiller());
+			con1.ajoutClient(cli7, maBanque.getListConseiller());
+			con1.ajoutClient(cli8, maBanque.getListConseiller());
+			con1.ajoutClient(cli9, maBanque.getListConseiller());
+			con1.ajoutClient(cli10, maBanque.getListConseiller());
+			
+			afficheClient(con1);
+			afficheClient(con2);
+			
+			System.out.println("Ajout d'un nouveau client pour le conseiller 1");
+			System.out.println("");
+			con1.ajoutClient(cli11, maBanque.getListConseiller());
+			
+			afficheClient(con1);
+			afficheClient(con2);
+			afficheClient(con3);
 		
 	}
 	
 	
-    public static void affiche(Conseiller conseil, List<Client> liste) {
+    public static void afficheClient(Conseiller conseil) {
         System.out.println("Le conseiller "+conseil.getPrenom() +" "+ conseil.getNom() +" s'occupe de "+conseil.nombreClient()+" clients : "); 
-        for (Client client : liste) {
+        for (Client client : conseil.listeClient()) {
                System.out.println(client.getPrenom() + " " + client.getNom());
         }
         System.out.println("");
