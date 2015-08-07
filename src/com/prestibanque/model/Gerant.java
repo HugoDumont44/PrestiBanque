@@ -7,4 +7,8 @@ public class Gerant extends Conseiller {
 		super(nom, prenom);
 	}
 
+	@Override
+	public String toString() {
+		return this.getPrenom() + " " + this.getNom();
+	}
 }
