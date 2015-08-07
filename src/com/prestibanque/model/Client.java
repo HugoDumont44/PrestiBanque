@@ -10,6 +10,7 @@ public class Client extends Utilisateur {
     private String ville;
     private String codePostal;
     private String telephone;
+    private Conseiller conseil;
 
     
     /*CONSTRUCTEUR*/
@@ -20,6 +21,14 @@ public class Client extends Utilisateur {
         this.codePostal = codePostal;
         this.telephone = telephone;
     }
+    public Client(String nom, String prenom) {
+        super(nom, prenom);
+        this.adresse = "ma super adresse";
+        this.ville = "la city";
+        this.codePostal = "le 9 3";
+        this.telephone = "SOS";
+    }
+
 
     
     /*METHODES D'ACCES AUX ATTRIBUTS*/
@@ -51,5 +60,13 @@ public class Client extends Utilisateur {
         this.telephone = telephone;
         return this;
     }
+	public Conseiller getConseil() {
+		return conseil;
+	}
+	public void setConseil(Conseiller conseil) {
+		this.conseil = conseil;
+		conseil.ajoutClient(this);
+	}
+    
     
 }

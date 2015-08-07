@@ -1,31 +1,46 @@
 package com.prestibanque.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Conseiller extends Utilisateur {
 
 	/*ATTRIBUTS*/
-	private int nbClient;
 	Gerant manager;
+	Agence agence;
+	List<Client> listClient = new ArrayList<Client>();
 	
 	
 	/*CONSTRUCTEUR*/
 	public Conseiller(String nom, String prenom){
 		super(nom, prenom);
-		this.nbClient = 0;
 	}
 
 
 	/*METHODES D'ACCES AUX ATTRIBUTS*/
-	public int getNbClient() {
-		return nbClient;
-	}
-	public void setNbClient(int nbClient) {
-		this.nbClient = nbClient;
-	}
 	public Gerant getManager() {
 		return manager;
 	}
 	public void setManager(Gerant manager) {
 		this.manager = manager;
+	}
+	public Agence getAgence() {
+		return agence;
+	}
+	public void setAgence(Agence agence) {
+		this.agence = agence;
+	}
+	
+	
+	/*COMPORTEMENTS DE LA CLASSE*/
+	public void ajoutClient(Client client){
+		listClient.add(client);
+	}
+	public List<Client> listeClient(){
+		return listClient;
+	}
+	public int nombreClient(){
+		return listClient.size();
 	}
 	
 }
