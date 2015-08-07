@@ -3,7 +3,9 @@ package com.prestibanque.test;
 import com.prestibanque.model.Conseiller;
 import com.prestibanque.model.Gerant;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class TestAgence {
 
@@ -36,7 +38,7 @@ public class TestAgence {
 
 
         while (!quitter) {
-            switch (afficheMenuPrincipal()) {
+            switch (MenuPrincipal()) {
                 case 1:
                     menuGerants(listeGerants);
                     break;
@@ -53,19 +55,55 @@ public class TestAgence {
         }
     }
 
-    private static int menuGerants(List<Gerant> listeGerants) {
+    private static void menuGerants(List<Gerant> listeGerants) {
         int i;
-        System.out.println("\n\nChoisissez votre compte :");
-        for (i = 1; i < listeGerants.size(); i++) {
-            Gerant gerant = listeGerants.get(i);
-            System.out.println(listeGerants.indexOf(gerant) + ". " + gerant);
-        }
-        System.out.println("0. Quitter");
+        Scanner scanner = new Scanner(System.in);
+        int input;
+        boolean quitter = false;
 
-        return new Scanner(System.in).nextInt() - 1;
+        while (!quitter) {
+            System.out.println("\n\nChoisissez votre compte :");
+            for (i = 0; i < listeGerants.size(); i++) {
+                Gerant gerant = listeGerants.get(i);
+                System.out.println((listeGerants.indexOf(gerant) + 1) + ". " + gerant);
+            }
+            System.out.println("0. Quitter");
+
+            switch (input = scanner.nextInt()) {
+                case 0:
+                    quitter = true;
+                    break;
+                default:
+                    if (input <= listeGerants.size() && input > 0) {
+                        menuGerant(listeGerants.get(input - 1));
+                    }
+            }
+        }
     }
 
-    private static int afficheMenuPrincipal() {
+    private static void menuGerant(Gerant gerant) {
+        Scanner scanner = new Scanner(System.in);
+        boolean quitter = false;
+
+        System.out.println("Bienvenue " + gerant + ",");
+        System.out.println("Choisissez une action :");
+        System.out.println("1. Faire un audit");
+        System.out.println("0. Quitter");
+
+        while (!quitter) {
+            switch (scanner.nextInt()) {
+                case 1:
+                    //audit()
+                    break;
+                case 0:
+                    quitter = true;
+                    break;
+            }
+        }
+    }
+
+
+    private static int MenuPrincipal() {
         System.out.println("\n\nBienvenue dans le logiciel de gestion de banque");
         System.out.println("Choisissez un rôle : ");
         System.out.println("1. Gérant");

@@ -1,4 +1,4 @@
 PrestiBanque.iml
-bin/
-.idea/
-.settings/
+/bin
+/.idea
+/.settings
